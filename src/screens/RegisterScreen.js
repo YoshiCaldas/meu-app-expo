@@ -14,75 +14,87 @@ import {
   UserContext,
 } from '../context/UserContext'
 
-export default function LoginScreen({
+export default function RegisterScreen({
   navigation,
 }) {
   const {
-    email,
-    senha,
+    setUsuario,
+    setEmail,
+    setSenha,
   } = useContext(UserContext)
 
-  const [
-    emailLogin,
-    setEmailLogin,
-  ] = useState('')
+  const [nome, setNome] =
+    useState('')
 
-  const [
-    senhaLogin,
-    setSenhaLogin,
-  ] = useState('')
+  const [emailNovo, setEmailNovo] =
+    useState('')
 
-  const [
-    erro,
-    setErro,
-  ] = useState('')
+  const [senhaNova, setSenhaNova] =
+    useState('')
 
-  function fazerLogin() {
+  function cadastrar() {
     if (
-      emailLogin === email &&
-      senhaLogin === senha
-    ) {
-      navigation.navigate(
-        'Home'
-      )
-    } else {
-      setErro(
-        'Email ou senha incorretos'
-      )
-    }
+      !nome ||
+      !emailNovo ||
+      !senhaNova
+    )
+      return
+
+    setUsuario(nome)
+    setEmail(emailNovo)
+    setSenha(senhaNova)
+
+    navigation.navigate(
+      'Login'
+    )
   }
 
   return (
     <View
       style={{
         flex: 1,
-        justifyContent:
-          'center',
         backgroundColor:
           '#0F172A',
+        justifyContent:
+          'center',
         padding: 25,
       }}
     >
       <Text
         style={{
           color: '#fff',
-          fontSize: 35,
+          fontSize: 36,
           fontWeight:
             'bold',
-          marginBottom: 30,
-          textAlign:
-            'center',
+          marginBottom: 40,
         }}
       >
-        LOGIN
+        Criar Conta
       </Text>
+
+      <TextInput
+        placeholder='Nome'
+        placeholderTextColor='#94A3B8'
+        value={nome}
+        onChangeText={
+          setNome
+        }
+        style={{
+          backgroundColor:
+            '#1E293B',
+          padding: 18,
+          borderRadius: 14,
+          color: '#fff',
+          marginBottom: 15,
+        }}
+      />
 
       <TextInput
         placeholder='Email'
         placeholderTextColor='#94A3B8'
-        value={emailLogin}
+        value={emailNovo}
         onChangeText={
-          setEmailLogin
+          setEmailNovo
         }
         style={{
           backgroundColor:
@@ -98,9 +110,9 @@ export default function LoginScreen({
         placeholder='Senha'
         placeholderTextColor='#94A3B8'
         secureTextEntry
-        value={senhaLogin}
+        value={senhaNova}
         onChangeText={
-          setSenhaLogin
+          setSenhaNova
         }
         style={{
           backgroundColor:
@@ -108,71 +120,50 @@ export default function LoginScreen({
           padding: 18,
           borderRadius: 14,
           color: '#fff',
-          marginBottom: 15,
+          marginBottom: 25,
         }}
       />
 
-      {erro !== '' && (
-        <Text
-          style={{
-            color: '#EF4444',
-            marginBottom: 15,
-            textAlign:
-              'center',
-          }}
-        >
-          {erro}
-        </Text>
-      )}
-
       <TouchableOpacity
-        onPress={fazerLogin}
+        onPress={cadastrar}
         style={{
           backgroundColor:
             '#2563EB',
           padding: 18,
           borderRadius: 14,
-          marginBottom: 20,
+          alignItems:
+            'center',
         }}
       >
         <Text
           style={{
             color: '#fff',
-            textAlign:
-              'center',
             fontWeight:
               'bold',
-            fontSize: 18,
+            fontSize: 16,
           }}
         >
-          Entrar
+          Criar Conta
         </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         onPress={() =>
           navigation.navigate(
-            'Register'
+            'Login'
           )
         }
-        style={{
-          backgroundColor:
-            '#1E293B',
-          padding: 18,
-          borderRadius: 14,
-        }}
       >
         <Text
           style={{
             color: '#fff',
             textAlign:
               'center',
-            fontWeight:
-              'bold',
-            fontSize: 18,
+            marginTop: 20,
+            fontSize: 16,
           }}
         >
-          Criar Conta
+          Voltar para login
         </Text>
       </TouchableOpacity>
     </View>

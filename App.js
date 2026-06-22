@@ -1,5 +1,11 @@
-import LoginScreen from './src/screens/LoginScreen'
+import AppRoutes from './src/routes/AppRoutes'
+
+import { UserProvider } from './src/context/UserContext'
 
 export default function App() {
-  return <LoginScreen />
+  return (
+    <UserProvider>
+      <AppRoutes />
+    </UserProvider>
+  )
 }
