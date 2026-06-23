@@ -35,23 +35,21 @@ O FitLife tem como objetivo funcionar como um personal trainer digital, permitin
 
 ## Como Instalar
 
+```
 git clone https://github.com/YoshiCaldas/meu-app-expo.git
 
 cd meu-app-expo
 
 npm install
 
-## Como Executar
+```
 
+## Como Executar
+```
 npx expo start
+```
 
 Após executar o comando, utilize o aplicativo Expo Go ou um emulador Android/iOS para visualizar o projeto.
-
-## Como Gerar o APK
-
-npx eas build:configure
-
-npx eas build -p android --profile preview
 
 ## Principais Recursos do Aplicativo
 
